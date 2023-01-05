@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,500,300,600,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="./favicon.png" sizes="32x32" type="image/png">
+    <meta name="robots" content="index,follow">
+	<meta name="description" content="Eye disease prediction system using Machine learning by Grant Adiele">
+    <link rel="canonical" href="https://eye-disease-prediction.netlify.app">
+	<meta property="og:title" content="Eye disease prediction system &#8212; Home">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://eye-disease-prediction.netlify.app/assets/image/icon-256x192.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="256">
+	<meta property="og:image:height" content="192">
+	<meta property="og:url" content="https://eye-disease-prediction.netlify.app">
+	<meta property="og:description" content="Eye disease prediction system using Machine learning by Grant Adiele">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:site_name" content="Eye disease prediction system">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Eye disease prediction system &#8212; Home">
+	<meta name="twitter:description" content="Eye disease prediction system using Machine learning by Grant Adiele">
+	<meta name="twitter:image" content="https://eye-disease-prediction.netlify.app/assets/image/icon-256x192.png">
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org/",
+			"@type": "WebSite",
+			"image": [
+            	"https://eye-disease-prediction.netlify.app/assets/image/icon-256x192.png"
+            ],
+			"url": "https://eye-disease-prediction.netlify.app",
+			"name": "Eye disease prediction system &#8212; Home",
+			"description": "Eye disease prediction system using Machine learning by Grant Adiele."
+		}
+	</script>
+    <title>Eye disease prediction system  &#8212; Home</title>
+    <style>
+        * {
+            font-family: 'General Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="space-y-5">
+        <div class="py-6 px-4 w-full border-b border-gray-100">
+            <h1 class="w-full max-w-5xl mx-auto text-gray-800 text-5xl">Eye disease prediction system with Machine learning.</h1>
+        </div>
+
+        <div class="min-h-[65vh] px-4 w-full max-w-5xl mx-auto space-y-5">
+            <div class="flex">
+                <div class="ml-auto relative">
+                    <button type="button" id="helpBtn" class="py-1 px-2 flex items-center gap-x-1 border border-blue-400 text-blue-600 text-xs rounded-full">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Need help?</span>
+                    </button>
+
+                    <div id="helpModal" class="p-4 w-72 absolute top-8 right-0 bg-blue-600 rounded-2xl shadow-2xl transition-all ease-in scale-0">
+                        <h2 class="mb-5 text-center text-white text-lg">How to use</h2>
+                        <ol class="pl-4 text-gray-100 text-sm list-decimal space-y-3">
+                            <li>
+                                Click on the <span class="bg-blue-800 text-white">Upload Eye Image</span> button and select and upload an image of the eye.
+                                <div>
+                                    <img src="./assets/image/sample.png" alt="Sample image" width="150">
+                                    <p class="text-gray-300 text-xs italic">(Example of eye image sample to be uploaded)</p>
+                                </div>
+                            </li>
+                            <li>Click on <span class="bg-blue-800 text-white">Run prediction</span> button to begin processing the image.</li>
+                            <li>Wait for few seconds for the model to process and return prediction returns.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="basis-1/2">
+                    <img src="./assets/image/eye-logo.png" alt="Eye image logo"/>
+                </div>
+
+                <div class="basis-1/2 space-y-10">
+                    <div class="bg-gray-50 rounded-lg shadow-sm">
+                        <div class="py-2 px-4 w-full border-b border-gray-200">
+                            <h2 class="text-gray-800">Model</h2>
+                        </div>
+                        <div class="p-5 space-y-5">
+                            <p id="appStatus" class="text-orange-400 font-semibold text-sm">Wait while model and TensorFlow.js is loading...</p>
+
+                            <div id="uploadImg">
+                                <form method="post" enctype="multipart/form-data">
+                                    <label for="imageInput" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer">
+                                        <i class="fa-solid fa-upload"></i>
+                                        <span>Upload Eye Image</span>
+                                    </label>
+                                    <input type="file" id="imageInput" class="hidden" />
+                                </form>
+                            </div>
+
+                            <div id="viewSample" class="space-y-5 hidden">
+                                <div class="space-y-2">
+                                    <div>
+                                        <p class="text-gray-500 text-sm">Image sample:</p>
+                                        <img src="" id="imageElement">
+                                    </div>
+
+                                    <button id="predictBtn" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer disabled:bg-gray-300 disabled:shadow-none">
+                                        <i class="fa-solid fa-microchip"></i>
+                                        <span>Run Prediction</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="viewResult" class="bg-gray-50 rounded-lg shadow-sm hidden">
+                        <div class="py-2 px-4 w-full border-b border-gray-200">
+                            <h2 class="text-gray-800">Prediction results</h2>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <ul id="predictionsList"></ul>
+
+                            <button id="resetBtn" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                                <span>Run another Prediction</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-6 px-4 w-full border-t border-gray-100">
+            <p class="text-center text-gray-700">Made with <i class="fa fa-heart text-red-600"></i> by Grant Adiele</p>
+        </footer>
+    </div>
+
+
+    <!-- import TensorFlow.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js" type="text/javascript"></script>
+
+    <!-- import teachablemachines API -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
