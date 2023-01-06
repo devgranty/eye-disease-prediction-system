@@ -12,6 +12,7 @@ const APP_STATUS = document.getElementById('appStatus');
 const UPLOAD_IMAGE = document.getElementById('uploadImg');
 const VIEW_SAMPLE = document.getElementById('viewSample');
 const VIEW_RESULT = document.getElementById('viewResult');
+const IMAGE_INPUT_LABEL = document.getElementById('imageInputLabel');
 const IMAGE_INPUT = document.getElementById('imageInput');
 const IMAGE_ELEMENT = document.getElementById('imageElement');
 const PREDICTIONS_LIST = document.getElementById('predictionsList');
@@ -33,7 +34,12 @@ async function loadModel() {
     model = await tmImage.load(modelURL, metadataURL);
     maxPreditions = model.getTotalClasses();
 
-    APP_STATUS.innerText = 'Model loaded successfully!';
+    APP_STATUS.innerHTML = `<span class="text-green-500">
+        <i class="fa-regular fa-circle-check"></i>
+        <span>Model loaded successfully.</span>
+    </span>`;
+
+    IMAGE_INPUT_LABEL.classList.remove('pointer-events-none');
 }
 
 // Call the function immediately to start loading.
@@ -58,6 +64,7 @@ function getImage() {
         IMAGE_ELEMENT.setAttribute('src', imageURL);
 
         VIEW_SAMPLE.classList.remove('hidden');
+
         UPLOAD_IMAGE.classList.add('hidden');
     };
 
@@ -95,23 +102,19 @@ PREDICT_BTN.onclick = () => {
 
 // Reset the UI
 RESET_BTN.onclick = () => {
-    // VIEW_SAMPLE.classList.add('hidden');
-    // UPLOAD_IMAGE.classList.remove('hidden');
-    // VIEW_RESULT.classList.add('hidden');
-    // PREDICT_BTN.removeAttribute('disabled');
     window.location.href = '/';
 }
 
-
 HELP_BTN.onclick = () => {
-    HELP_MODAL.classList.remove('scale-0');
-    HELP_MODAL.classList.add('scale-100');
+    if(HELP_MODAL.classList.contains('opacity-0')){
+        HELP_MODAL.classList.remove('opacity-0');
+        HELP_MODAL.classList.add('opacity-100');
+    }
 }
 
-
-window.addEventListener('mouseup', function(event){
-    if(event.target != HELP_MODAL && event.target.parentNode != HELP_MODAL){
-        HELP_MODAL.classList.remove('scale-100');
-        HELP_MODAL.classList.add('scale-0');
+window.onmouseup = (event) => {
+    if((event.target != HELP_MODAL && event.target.parentNode != HELP_MODAL)){
+        HELP_MODAL.classList.remove('opacity-100');
+        HELP_MODAL.classList.add('opacity-0');
     }
-});  
+}

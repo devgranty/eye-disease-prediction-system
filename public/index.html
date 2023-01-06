@@ -58,19 +58,26 @@
                         <span>Need help?</span>
                     </button>
 
-                    <div id="helpModal" class="p-4 w-72 absolute top-8 right-0 bg-blue-600 rounded-2xl shadow-2xl transition-all ease-in scale-0">
-                        <h2 class="mb-5 text-center text-white text-lg">How to use</h2>
-                        <ol class="pl-4 text-gray-100 text-sm list-decimal space-y-3">
-                            <li>
-                                Click on the <span class="bg-blue-800 text-white">Upload Eye Image</span> button and select and upload an image of the eye.
-                                <div>
-                                    <img src="./assets/image/sample.png" alt="Sample image" width="150">
-                                    <p class="text-gray-300 text-xs italic">(Example of eye image sample to be uploaded)</p>
-                                </div>
-                            </li>
-                            <li>Click on <span class="bg-blue-800 text-white">Run prediction</span> button to begin processing the image.</li>
-                            <li>Wait for few seconds for the model to process and return prediction returns.</li>
-                        </ol>
+                    <div id="helpModal" class="w-72 absolute top-8 right-0 bg-gray-900 rounded-2xl shadow-2xl transition-all ease-out opacity-0 after:content-[''] after:absolute after:-top-[5px] after:right-10 after:-ml-[10px] after:border-[7px] after:border-t-transparent after:border-b-transparent after:border-l-transparent after:border-r-gray-900">
+                        <div class="py-2 px-4 w-full border-b border-gray-800">
+                            <div class="flex items-center gap-x-1 text-gray-400 text-xs">
+                                <i class="fa fa-info-circle"></i>
+                                <h2>How to use</h2>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <ol class="pl-4 text-gray-100 text-sm list-decimal space-y-3">
+                                <li>
+                                    Click on the <span class="bg-blue-800 text-white">Upload Eye Image</span> button and select and upload an image of the eye.
+                                    <div>
+                                        <img src="./assets/image/sample.png" alt="Sample image" width="150">
+                                        <p class="text-gray-300 text-xs italic">(Example of eye image sample to be uploaded)</p>
+                                    </div>
+                                </li>
+                                <li>Click on <span class="bg-blue-800 text-white">Run prediction</span> button to begin processing the image.</li>
+                                <li>Wait for few seconds for the model to process and return prediction returns.</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,11 +93,16 @@
                             <h2 class="text-gray-800">Model</h2>
                         </div>
                         <div class="p-5 space-y-5">
-                            <p id="appStatus" class="text-orange-400 font-semibold text-sm">Wait while model and TensorFlow.js is loading...</p>
+                            <p id="appStatus" class="text-sm">
+                                <span class="text-gray-500">
+                                    <i class="fa-solid fa-circle-notch animate-spin"></i>
+                                    <span>Wait while model and TensorFlow.js is loading...</span>
+                                </span>
+                            </p>
 
                             <div id="uploadImg">
                                 <form method="post" enctype="multipart/form-data">
-                                    <label for="imageInput" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer">
+                                    <label id="imageInputLabel" for="imageInput" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer pointer-events-none">
                                         <i class="fa-solid fa-upload"></i>
                                         <span>Upload Eye Image</span>
                                     </label>
