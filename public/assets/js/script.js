@@ -106,14 +106,12 @@ RESET_BTN.onclick = () => {
 }
 
 HELP_BTN.onclick = () => {
-    if(HELP_MODAL.classList.contains('opacity-0')){
-        HELP_MODAL.classList.remove('opacity-0');
-        HELP_MODAL.classList.add('opacity-100');
-    }
+    HELP_MODAL.classList.remove('opacity-0');
+    HELP_MODAL.classList.add('opacity-100');
 }
 
 window.onmouseup = (event) => {
-    if((event.target != HELP_MODAL && event.target.parentNode != HELP_MODAL)){
+    if(!HELP_MODAL.contains(event.target)){
         HELP_MODAL.classList.remove('opacity-100');
         HELP_MODAL.classList.add('opacity-0');
     }
