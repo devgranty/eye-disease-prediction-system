@@ -24,6 +24,11 @@ const MOBILE_NET_INPUT_WIDTH = 224;
 
 let model, maxPreditions;
 
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 /**
  *  Let's load our pretrained model and weights
  **/
@@ -82,8 +87,12 @@ async function makePrediction(htmlElement) {
     var resultStr = '';
     for (let i = 0; i < maxPreditions; i++){
         resultStr += `<li>
-            <span class="text-xs text-blue-700 font-medium uppercase">${prediction[i].className}: </span>
-            <span>${(prediction[i].probability * 100).toFixed(2)}%</span>
+            <span class="text-xs text-blue-700 font-medium uppercase whitespace-nowrap">${prediction[i].className}: </span>
+            <div class="py-0.5 w-full bg-gray-100 rounded-md">
+                <div class="h-full w-[66%] bg-slate-600 text-center rounded-md" style="width:`+prediction[i].probability * 100+`%">
+                    <span class="text-xs text-gray-900 whitespace-nowrap">${(prediction[i].probability * 100).toFixed(2)}%</span>
+                </div>
+            </div>
         </li>`;
     }
     PREDICTIONS_LIST.innerHTML = resultStr;
@@ -95,10 +104,15 @@ async function makePrediction(htmlElement) {
 
 
 // Make predictions
-PREDICT_BTN.onclick = () => {
-    PREDICT_BTN.classList.add('hidden');
+PREDICT_BTN.onclick = async () => {
+    PREDICT_BTN.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin ease-in-out"></i>
+    <span>Generating Predictions...</span>`;
+    PREDICT_BTN.setAttribute('disabled', '');
+    await sleep(1000);
     makePrediction(IMAGE_ELEMENT);
-}
+    PREDICT_BTN.innerHTML = `<i class="fa-solid fa-check-double"></i>
+    <span>Prediction results generated successfully.</span>`;
+};
 
 // Reset the UI
 RESET_BTN.onclick = () => {

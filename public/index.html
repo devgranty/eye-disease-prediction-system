@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,500,300,600,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="icon" href="./favicon.png" sizes="32x32" type="image/png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="favicon.png" sizes="32x32" type="image/png">
     <meta name="robots" content="index,follow">
 	<meta name="description" content="Eye disease prediction system using Machine learning by Grant Adiele">
     <link rel="canonical" href="https://eye-disease-prediction.netlify.app">
@@ -46,8 +46,8 @@
 </head>
 <body class="bg-white">
     <div class="space-y-5">
-        <div class="py-6 px-4 w-full border-b border-gray-100">
-            <h1 class="w-full max-w-5xl mx-auto text-gray-800 text-5xl">Eye disease prediction system with Machine learning.</h1>
+        <div class="py-6 px-4 w-full bg-gray-900">
+            <h1 class="w-full max-w-5xl mx-auto text-gray-50 text-5xl">Eye disease prediction system with Machine learning.</h1>
         </div>
 
         <div class="pb-28 px-4 w-full max-w-5xl mx-auto space-y-5">
@@ -70,7 +70,7 @@
                                 <li>
                                     Click on the <span class="px-2 bg-gray-700 font-mono text-white text-xs rounded">Upload Eye Image</span> button and select and upload an image of the eye.
                                     <div>
-                                        <img src="./assets/image/sample.png" alt="Sample image" width="150">
+                                        <img src="assets/image/sample.png" alt="Sample image" width="150">
                                         <p class="text-gray-300 text-xs italic">(Example of eye image sample to be uploaded)</p>
                                     </div>
                                 </li>
@@ -84,7 +84,7 @@
 
             <div class="flex flex-col md:flex-row gap-10">
                 <div class="basis-1/2">
-                    <img src="./assets/image/eye-logo.png" alt="Eye image logo"/>
+                    <img src="assets/image/eye-logo.png" alt="Eye image logo"/>
                 </div>
 
                 <div class="basis-1/2 space-y-10">
@@ -117,8 +117,8 @@
                                         <img src="" id="imageElement">
                                     </div>
 
-                                    <button id="predictBtn" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer disabled:bg-gray-300 disabled:shadow-none">
-                                        <i class="fa-solid fa-microchip"></i>
+                                    <button id="predictBtn" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer disabled:bg-transparent disabled:shadow-none disabled:border disabled:border-gray-300 disabled:text-gray-900">
+                                        <i class="fa-solid fa-check-double"></i>
                                         <span>Run Prediction</span>
                                     </button>
                                 </div>
@@ -131,7 +131,7 @@
                             <h2 class="text-gray-800">Prediction results</h2>
                         </div>
                         <div class="p-5 space-y-2">
-                            <ul id="predictionsList"></ul>
+                            <ul id="predictionsList" class="space-y-4"></ul>
 
                             <button id="resetBtn" class="py-3 px-6 inline-flex items-center gap-x-2 text-white bg-gray-900 text-xs font-medium uppercase rounded-lg shadow-lg cursor-pointer">
                                 <i class="fa-solid fa-arrow-rotate-left"></i>
@@ -155,6 +155,6 @@
     <!-- import teachablemachines API -->
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     
-    <script src="./assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
