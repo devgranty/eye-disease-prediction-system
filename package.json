@@ -1,0 +1,29 @@
+{
+  "name": "eye-disease-prediction-system",
+  "version": "1.0.0",
+  "description": "An Eye disease prediction system using Machine learning by Grant Adiele. The system is able to predict if a person has eye any of the following eye dieases like - Bulging eyes, Cataracts, Crossed eyes, Glaucoma or Uveitis. It can be trained to perdict more eye diseases in future.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "set NODE_ENV=development&& node server.js",
+    "serve": "set NODE_ENV=production&& node server.js",
+    "test": "set NODE_ENV=test&& nodemon script.test.js"
+  },
+  "keywords": [
+    "Machine",
+    "learning",
+    "ML",
+    "Eye",
+    "disease",
+    "detection",
+    "Eye",
+    "disease",
+    "prediction",
+    "Grant",
+    "Adiele"
+  ],
+  "author": "Grant Adiele",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
